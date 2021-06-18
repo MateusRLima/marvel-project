@@ -23,14 +23,36 @@ const HeroList = () => {
     fetchHeroes();
   }, [])
 
-  return <ul>
-          {heroes.map(hero => {
-            return <li key={hero.id}>
-              <img src={hero.thumbnail.path + hero.thumbnail.extension} alt='Retrato do heroi'/>
-              {hero.name}
-              </li>
-          })}
-        </ul>
+  return <>
+
+  <table>
+    <tr>
+      <th>Personagem</th>
+      <th>Série</th>
+      <th>Eventos</th>
+    </tr>
+    {heroes.map(hero => {
+    return <>
+    <tr key={hero.id}>
+      <td>
+        <img src={`${hero.thumbnail.path}.${hero.thumbnail.extension}`} alt='Retrato do heroi' width='100px' height='100px'/>
+        <p><strong>{hero.name}</strong></p>
+      </td>
+      <td>
+        {hero.series.items.map(serie => {
+          return  <p>{serie.name}</p>
+        })}
+      </td>
+      <td>
+        {hero.events.items.map(serie => {
+          return  <p>{serie.name}</p>
+        })}
+      </td>
+    </tr>
+    </>
+    })}
+  </table>
+</>
 }
 
 export default HeroList

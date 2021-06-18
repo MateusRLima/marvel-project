@@ -1,5 +1,5 @@
 import Header from './components/HeaderComponent/Header'
-import HeroList from './components/HeroList';
+import HeroList from './components/HeroListComponent/HeroList';
 
 function App() {
   return (
