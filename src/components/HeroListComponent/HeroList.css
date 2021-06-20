@@ -1,0 +1,29 @@
+.hero-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 1rem;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+}
+
+.hero-table .hero-table-header {
+  text-align: left;
+  letter-spacing: 0px;
+  color: #8E8E8E;
+}
+
+.hero-table .hero-table-content {
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 0px 5px #00000033;
+  border-radius: 4px;
+  text-align: left;
+}
+
+.hero-table .hero-table-content:hover {
+  box-shadow: 0px 0px 5px 5px #00000033;
+}
+
+.hero-table .hero-table-content .hero-table-content-img {
+  display: block;
+}
