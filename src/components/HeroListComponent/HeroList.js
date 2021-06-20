@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import HeroPagination from './HeroPagination'
+import HeroPagination from './HeroPaginationComponent/HeroPagination'
+import SearchInput from '../SearchComponent/SearchInput'
 import './HeroList.css'
 import md5 from 'md5'
 
@@ -7,6 +8,7 @@ const HeroList = () => {
 
   const [heroes, setHeroes] = useState([])
   const [pageData, setPageData] = useState({})
+  const [offset, setOffset] = useState(0)
   
   useEffect(() => {
     const timestamp = Date.now()
@@ -17,7 +19,7 @@ const HeroList = () => {
     hash = md5(hash)
 
     const fetchHeroes = () => {
-      fetch(`http://gateway.marvel.com/v1/public/characters?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&limit=10`, {method: 'get'})
+      fetch(`http://gateway.marvel.com/v1/public/characters?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&limit=10&offset=${offset}`, {method: 'get'})
         .then(res => res.json())
         .then(response => {
           setPageData(response.data)
@@ -26,10 +28,17 @@ const HeroList = () => {
     }
 
     fetchHeroes();
-  }, [])
+  }, [offset])
 
-  return <>
+  const paginate = (pageNumber) => {
+    setOffset(pageNumber*10)
+  }
+
+  return <div className="table-container">
+
+
   <table className="hero-table">
+  <SearchInput />
     <tr className="hero-table-header">
       <th>Personagem</th>
       <th>Série</th>
@@ -57,8 +66,8 @@ const HeroList = () => {
     </>
     })}
   </table>
-  <HeroPagination total={pageData.total} />
-</>
+  <HeroPagination total={pageData.total} paginate={paginate} />
+</div>
 }
 
 export default HeroList

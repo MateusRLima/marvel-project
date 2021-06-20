@@ -1,3 +1,4 @@
+
 .hero-table {
   width: 100%;
   border-collapse: separate;
@@ -5,6 +6,7 @@
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
   border-radius: 25px;
+  padding: 0 5rem;
 }
 
 .hero-table .hero-table-header {
