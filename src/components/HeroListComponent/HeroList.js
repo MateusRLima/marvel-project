@@ -1,22 +1,26 @@
 import React, {useState, useEffect} from 'react'
+import HeroPagination from './HeroPagination'
 import './HeroList.css'
 import md5 from 'md5'
 
 const HeroList = () => {
 
   const [heroes, setHeroes] = useState([])
-
-  const timestamp = Date.now()
-  const publicKey = '661772f1f3354e0effb6198047ae329b'
-  const privateKey = '908b1efe444b5b85579fca43fab4602ec5532c7a'
-  var hash = `${timestamp}${privateKey}${publicKey}`
-  hash = md5(hash)
-
+  const [pageData, setPageData] = useState({})
+  
   useEffect(() => {
-    const fetchHeroes =  () => {
+    const timestamp = Date.now()
+    const publicKey = '661772f1f3354e0effb6198047ae329b'
+    const privateKey = '908b1efe444b5b85579fca43fab4602ec5532c7a'
+    var hash = `${timestamp}${privateKey}${publicKey}`
+
+    hash = md5(hash)
+
+    const fetchHeroes = () => {
       fetch(`http://gateway.marvel.com/v1/public/characters?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&limit=10`, {method: 'get'})
         .then(res => res.json())
         .then(response => {
+          setPageData(response.data)
           setHeroes(response.data.results)
         })
     }
@@ -42,6 +46,7 @@ const HeroList = () => {
         {hero.series.items.slice(0, 3).map(serie => {
           return  <p>{serie.name}</p>
         })}
+        
       </td>
       <td className="hero-table-content-event">
         {hero.events.items.slice(0, 3).map(event => {
@@ -52,6 +57,7 @@ const HeroList = () => {
     </>
     })}
   </table>
+  <HeroPagination total={pageData.total} />
 </>
 }
 
