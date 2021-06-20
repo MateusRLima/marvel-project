@@ -9,6 +9,7 @@ const HeroList = () => {
   const [heroes, setHeroes] = useState([])
   const [pageData, setPageData] = useState({})
   const [offset, setOffset] = useState(0)
+  const [detailCollpase, setdetailCollpase] = useState([])
   
   useEffect(() => {
     const timestamp = Date.now()
@@ -30,12 +31,24 @@ const HeroList = () => {
     fetchHeroes();
   }, [offset])
 
-  const paginate = (pageNumber) => {
+  const paginate = pageNumber => {
     setOffset(pageNumber*10)
   }
 
-  return <div className="table-container">
+  const toggleCollapse = heroname => {
+    const showRow = detailCollpase.slice()
+    const index = showRow.indexOf(heroname)
 
+    if(index >= 0) {
+      showRow.splice(index, 1)
+      setdetailCollpase(showRow)
+    } else {
+      showRow.push(heroname)
+      setdetailCollpase(showRow)
+    }
+  }
+
+  return <div className="table-container">
 
   <table className="hero-table">
   <SearchInput />
@@ -46,7 +59,7 @@ const HeroList = () => {
     </tr>
     {heroes.map(hero => {
     return <>
-    <tr key={hero.id} className="hero-table-content">
+    <tr onClick={() => toggleCollapse(hero.name)} key={hero.id} className="hero-table-content">
       <td className="hero-table-content-img">
         <img src={`${hero.thumbnail.path}.${hero.thumbnail.extension}`} alt='Retrato do heroi' width='100px' height='100px'/>
         <p><strong>{hero.name}</strong></p>
@@ -55,7 +68,6 @@ const HeroList = () => {
         {hero.series.items.slice(0, 3).map(serie => {
           return  <p>{serie.name}</p>
         })}
-        
       </td>
       <td className="hero-table-content-event">
         {hero.events.items.slice(0, 3).map(event => {
@@ -63,6 +75,11 @@ const HeroList = () => {
         })}
       </td>
     </tr>
+    {detailCollpase.includes(hero.name) && (
+      <tr>
+        {hero.name}
+      </tr>
+    )}
     </>
     })}
   </table>

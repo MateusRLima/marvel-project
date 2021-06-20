@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import './HeroPagination.css'
 
 const HeroPagination = ({total, paginate}) => {
@@ -7,7 +7,7 @@ const HeroPagination = ({total, paginate}) => {
 
   let pageNumbers = []
 
-  for (var i = 1; i < totalPages; i++) {
+  for (var i = 0; i < totalPages; i++) {
     pageNumbers.push(i)
   }
 
@@ -17,7 +17,7 @@ const HeroPagination = ({total, paginate}) => {
         {pageNumbers.map(number => 
         (
           <li key={number}>
-            <a onClick={() => paginate(number)}>{number}</a>
+            <button onClick={() => paginate(number)}>{number}</button>
           </li>
         ))}
       </ul>
