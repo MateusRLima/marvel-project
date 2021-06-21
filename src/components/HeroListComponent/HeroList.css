@@ -26,6 +26,19 @@
   box-shadow: 0px 0px 5px 5px #00000033;
 }
 
-.hero-table .hero-table-content .hero-table-content-img {
-  display: block;
+.hero-table .hero-table-content .hero-table-content-img{
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+
+.hero-table .hero-table-content .hero-table-content-img .hero-table-content-name{
+  margin-left: 5rem;
+  color: #555555;
+}
+
+.hero-table .hero-table-detail{
+ display: flex;
+ align-items: center;
+ justify-content: flex-end;
 }

@@ -9,7 +9,7 @@
     flex-wrap: wrap;
 }
 
-.nav-pagination button {
+.nav-pagination .page-button {
     background: #F5F5F5 0% 0% no-repeat padding-box;
     border: 1px solid #E5E5E5;
     color: black;
@@ -18,11 +18,11 @@
     text-decoration: none;
 }
 
-button:hover {
+.page-button:hover {
     background-color: #5DAFFF;
 }
 
-button:focus {
+.page-button:focus {
     background-color: #167ABC;
     color: snow;
 }

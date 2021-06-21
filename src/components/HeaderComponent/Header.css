@@ -1,9 +1,21 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
+  padding: 1rem;
 }
 
 .header p {
   margin-right: 20px;
+  color: #555
+}
+
+.header img {
+ margin-right: 100%;
+}
+
+.candidate-abreviation{
+  background: snow;
+  padding: 0.5rem;
+  border-radius: 4px;
 }

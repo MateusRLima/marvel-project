@@ -5,11 +5,16 @@ import './Header.css'
 const Header = () => {
     return (
       <div className="header">
-          <img src={LogoObjective} alt='Logo da Objective' width='200px' height='50px'/>
-          <p>
-            <strong>Mateus Rosa de Lima</strong>
-            Teste Front-end
-          </p>
+        <div>
+          <img src={LogoObjective} alt='Logo da Objective' width='150px' height='35px'/>
+        </div>
+        <p style={{marginLeft:"50rem"}}>
+          <strong>Mateus Rosa de Lima </strong>
+          Teste Front-end
+        </p>
+        <div className="candidate-abreviation">
+          <strong>MR</strong>
+        </div>
       </div>
     )
 }

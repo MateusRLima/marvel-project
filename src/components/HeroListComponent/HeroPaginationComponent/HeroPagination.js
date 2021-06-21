@@ -2,6 +2,7 @@ import React from 'react'
 import './HeroPagination.css'
 
 const HeroPagination = ({total, paginate}) => {
+  
 
   const totalPages = total / 10
 
@@ -17,7 +18,7 @@ const HeroPagination = ({total, paginate}) => {
         {pageNumbers.map(number => 
         (
           <li key={number}>
-            <button onClick={() => paginate(number)}>{number}</button>
+            <button className='page-button' onClick={() => {paginate(number, 0);}} autoFocus>{number}</button>
           </li>
         ))}
       </ul>
