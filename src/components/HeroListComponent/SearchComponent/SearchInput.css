@@ -25,6 +25,7 @@ input {
     width: 20rem;
     height: 2rem;
     margin-bottom: 1rem;
+    padding: 0 1rem;
 }
 
 .button{
@@ -33,5 +34,10 @@ input {
     color: black;
     width: 5rem;
     text-decoration: none;
+}
+
+.button:hover{
+    background: #5DAFFF 0% 0% no-repeat padding-box;
+    cursor: pointer;
 }
 
