@@ -37,8 +37,38 @@
   color: #555555;
 }
 
-.hero-table .hero-table-detail{
- display: flex;
- align-items: center;
- justify-content: flex-end;
+.hero-table .hero-table-detail {
+  border-collapse: separate;
+  display: flex;
+  align-items: center;
+  color: black;
+  background-color:white;
+  text-align: left;
+  border-radius: 4px;
+  padding: 2rem
+}
+
+.hero-table .hero-table-detail td, th{
+  padding-right: 3rem;
+}
+
+.hero-table-detail-url{
+  display: flex;
+  flex-direction: column;
+}
+
+.link {
+  background: #F5F5F5 0% 0% no-repeat padding-box;
+  border: 1px solid #E5E5E5;
+  font-weight: bold;
+  border-radius: 4px;
+  text-align: center;
+  padding: 1rem;
+  margin: 1rem;
+  text-decoration: none;
+  color: black;
+}
+
+.link:hover {
+  background-color: #5DAFFF;
 }

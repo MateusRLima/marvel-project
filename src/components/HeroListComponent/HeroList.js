@@ -10,10 +10,8 @@ const HeroList = () => {
   const [pageData, setPageData] = useState({})
   const [offset, setOffset] = useState(0)
   const [offsetSearch, setOffsetSearch] = useState(0)
-  const [heroSearch, setHeroSearch] = useState({})
   const [detailCollpase, setdetailCollpase] = useState([])
 
-  
   const timestamp = Date.now()
   const publicKey = '661772f1f3354e0effb6198047ae329b'
   const privateKey = '908b1efe444b5b85579fca43fab4602ec5532c7a'
@@ -41,7 +39,6 @@ const HeroList = () => {
 
   const searchHero = (hero, offset ) => {
       setOffsetSearch(offset)
-      setHeroSearch(hero.name)
       console.log(hero.name)
       fetch(`http://gateway.marvel.com/v1/public/characters?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&limit=10&offset=${offsetSearch}&nameStartsWith=${hero.name}`, {method: 'get'})
         .then(res => res.json())
@@ -92,32 +89,30 @@ const HeroList = () => {
       </td>
     </tr>
     {detailCollpase.includes(hero.name) && (
-      <tr className="hero-table-detail">
-        <table>
-          <tr className="hero-detail-row">
-            <th>Séries</th>
-            <th>Eventos</th>
-            <th>Histórias</th>
-          </tr>
-          <tr >
-            <td className="hero-table-detail-content">
-              {hero.series.items.slice(0, 10).map(serie => {
-                return  <p>{serie.name}</p>
-              })}
-            </td>
-            <td className="hero-table-detail-content">
-              {hero.events.items.slice(0, 10).map(event => {
-                return  <p>{event.name}</p>
-              })}
-            </td>
-            <td className="hero-table-detail-content">
-              {hero.stories.items.slice(0, 10).map(storie => {
-                return  <p>{storie.name}</p>
-              })}
-            </td>
-          </tr>
-        </table>
-      </tr>
+    <tr className="hero-table-detail">
+      <table>
+        <tr className="hero-table-detail-header">
+          <th>HQ's</th>
+          <th>Histórias</th>
+        </tr>
+        <tr >
+          <td>
+            {hero.comics.items.slice(0, 10).map(comic => {
+              return  <p>{comic.name}</p>
+            })}
+          </td>
+          <td>
+            {hero.stories.items.slice(0, 10).map(storie => {
+              return  <p>{storie.name}</p>
+            })}
+          </td>
+        </tr>
+      </table>
+      <div className="hero-table-detail-url">
+        {hero.urls.map(url => { return <a href={url.url} className="link">{url.type.toUpperCase()}</a>
+        })}
+      </div>
+    </tr>
     )}
     </>
     })}
